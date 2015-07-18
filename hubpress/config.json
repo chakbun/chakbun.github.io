@@ -1,10 +1,1 @@
-{
-  "meta": {
-    "username": "chakbun",
-    "repositoryName": "chakbun.github.io",
-    "branch": "master"
-  },
-  "theme": {
-    "name": "Casper"
-  }
-}
+{"meta":{"username":"chakbun","repositoryName":"chakbun.github.io","branch":"master"},"site":{"title":"Chakbun's Bottle","description":"Sharing 4 u","logo":": ]","url":"https://chakbun.github.io"},"socialnetwork":{"email":"cheungjaben@qq.com","github":"https://github.com/chakbun"},"theme":{"name":"Casper","url":"//chakbun.github.io/themes/Casper"}}
