@@ -1,6 +1,5 @@
 = My First Topic
-:published_at: 2015-07-19
 :hp-tags: HubPress, Blog
-:hp-alt-title: My English Title
+:hp-alt-title: My First Topic
 
 hello world , this is my first topic.
