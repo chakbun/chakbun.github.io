@@ -1,0 +1,61 @@
+= J2Objc 与 Xcode 整合流程
+:hp-tags: j2objc,iOS,Java
+:hp-alt-title: aboutJ2Objc 
+
+j2objc 是 Google 发布的将java 转换成 objc的工具。 至于工具使用如何，在这里不做评价，各位自己体验一番。
+
+https://github.com/google/j2objc
+
+
+j2objc 与xcode整合的配置流程：
+
+1. 下载j2objc：https://github.com/google/j2objc（40M左右）。
+
+2. 打开终端，去到j2objc目录下，执行make dist编译整个j2objc文件，完成后发现多了个名为dist的目录，里面装着就是j2objc的执行文件。（make dist过程较漫长，有半个钟头。编译完毕后目录容量去到1.3G+，惊呆了。另外可以执行make clean 移除编译的文件）。
+
+3. 可以去配置xcode了，这里采用的是“Xcode Build Rules”的方法将编译成的objc文件整合到Xcode中使用，将java文件丢入项目里面，每一次运行都重新将java文件编译成objc一次。
+
+4. 首先，配置j2objc的路径变量J2OBJC_HOME（随意起的）。打开项目，.xcodeproj -> (targets)－> Build Settings-> User-Defined，加入键为路径变量名字（J2OBJC_HOME），对应的值就是step2生成的dist目录路径，e.g.:“…/j2objc/dist”。
+
+5.配置编译规则，.xcodeproj -> (targets)－> Build Rules->+(add a custom build rule)添加一个自定义的编译规则，process选java source files，using 选 custom script：，然后输入下面的脚本命令：
+
+if [ ! -f "${J2OBJC_HOME}/j2objc" ];
+then echo "J2OBJC_HOME not correctly defined in Settings.xcconfig, currently set to '${J2OBJC_HOME}'";
+exit 1;
+fi;
+echo "'${DERIVED_FILES_DIR}'"
+"${J2OBJC_HOME}/j2objc" -d ${DERIVED_FILES_DIR} -sourcepath "${PROJECT_DIR}/java" --no-package-directories -use-arc -g ${INPUT_FILE_PATH};
+
+简单翻译下：判断J2OBJC_HOME下j2objc是否存在，不存在就提示错误信息。存在就进行将java编译成objc。
+编译格式：j2objc -d ${DERIVED_FILES_DIR} -sourcepath "${PROJECT_DIR}/java文件路径" --no-package-directories -use-arc -g ${INPUT_FILE_PATH};
+参数具体请点：https://github.com/google/j2objc/wiki/j2objc
+
+所以上面的脚本你需要修改的地方：1. J2OBJC_HOME名字，2."${PROJECT_DIR}/java" java源码路径。
+
+
+Output Files加入：,
+${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.h
+${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m
+表示java翻译出来的objc路径文件。。。
+
+6. 配置search path，.xcodeproj -> (targets)－> Build Settings
+Header Search Paths 加入 
+"${J2OBJC_HOME}/include" 和 "${DERIVED_FILES_DIR}"，都是non-recursive。
+Library Search Paths 加入
+"${J2OBJC_HOME}/lib"，non-recursive
+
+7.继续.xcodeproj -> (targets)－> Build Settings
+Linking-> Other Linker Flags， 加入 
+-l"jre_emul"，-l"z" 和 -l"icucore"
+
+8.最后据说还要加入三个库：
+libicucore.dylib
+Security.framework
+libz.dylib
+(但是试过不加入也可以编译成功)
+
+到这里就可以编译通过了！
+
+更详细请点：https://github.com/google/j2objc/wiki/Xcode-Build-Rules
+
+
