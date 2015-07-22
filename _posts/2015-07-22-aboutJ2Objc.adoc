@@ -17,7 +17,7 @@ j2objc 与xcode整合的配置流程：
 
 4. 首先，配置j2objc的路径变量J2OBJC_HOME（随意起的）。打开项目，.xcodeproj -> (targets)－> Build Settings-> User-Defined，加入键为路径变量名字（J2OBJC_HOME），对应的值就是step2生成的dist目录路径，e.g.:“…/j2objc/dist”。
 
-5.配置编译规则，.xcodeproj -> (targets)－> Build Rules->+(add a custom build rule)添加一个自定义的编译规则，process选java source files，using 选 custom script：，然后输入下面的脚本命令：
+5. 配置编译规则，.xcodeproj -> (targets)－> Build Rules->+(add a custom build rule)添加一个自定义的编译规则，process选java source files，using 选 custom script：，然后输入下面的脚本命令：
 
 if [ ! -f "${J2OBJC_HOME}/j2objc" ];
 then echo "J2OBJC_HOME not correctly defined in Settings.xcconfig, currently set to '${J2OBJC_HOME}'";
@@ -44,11 +44,11 @@ Header Search Paths 加入
 Library Search Paths 加入
 "${J2OBJC_HOME}/lib"，non-recursive
 
-7.继续.xcodeproj -> (targets)－> Build Settings
+7. 继续.xcodeproj -> (targets)－> Build Settings
 Linking-> Other Linker Flags， 加入 
 -l"jre_emul"，-l"z" 和 -l"icucore"
 
-8.最后据说还要加入三个库：
+8. 最后据说还要加入三个库：
 libicucore.dylib
 Security.framework
 libz.dylib
