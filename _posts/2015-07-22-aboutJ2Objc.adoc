@@ -1,5 +1,5 @@
 = J2Objc 与 Xcode 整合流程
-:hp-tags: j2objc,iOS,Java
+:hp-tags: J2Objc,iOS,Java
 :hp-alt-title: aboutJ2Objc 
 
 j2objc 是 Google 发布的将java 转换成 objc的工具。 至于工具使用如何，在这里不做评价，各位自己体验一番。
