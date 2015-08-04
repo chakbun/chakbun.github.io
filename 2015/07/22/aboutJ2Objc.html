@@ -23,7 +23,7 @@
     <meta property="og:description" content="j2objc 是 Google 发布的将java 转换成 objc的工具。 至于工具使用如何，在这里不做评价，各位自己体验一番。 https://github.com/google/j2objc j2objc 与xcode整合的配置流程： 下载j2objc：https://github.com/google/j2objc（40M左右）。 打开终端，去到j2objc目录下，执行make dist编译整个j2objc文件，完成后发现多了个名为dist的目录，里面装着就是j2objc的执行文件。（make dist过程较漫长，有半个钟头。编译完毕后目录容量去..." />
     <meta property="og:url" content="https://chakbun.github.io/2015/07/22/aboutJ2Objc.html" />
     <meta property="article:published_time" content="2015-07-21T16:00:00.000Z" />
-    <meta property="article:modified_time" content="2015-07-25T05:50:03.813Z" />
+    <meta property="article:modified_time" content="2015-08-04T08:54:44.304Z" />
     <meta property="article:tag" content="J2Objc" />
     <meta property="article:tag" content="iOS" />
     <meta property="article:tag" content="Java" />
@@ -48,7 +48,7 @@
     "headline": "J2Objc 与 Xcode 整合流程",
     "url": "https://chakbun.github.io/2015/07/22/aboutJ2Objc.html",
     "datePublished": "2015-07-21T16:00:00.000Z",
-    "dateModified": "2015-07-25T05:50:03.813Z",
+    "dateModified": "2015-08-04T08:54:44.304Z",
     "keywords": "J2Objc, iOS, Java",
     "description": "j2objc 是 Google 发布的将java 转换成 objc的工具。 至于工具使用如何，在这里不做评价，各位自己体验一番。 https://github.com/google/j2objc j2objc 与xcode整合的配置流程： 下载j2objc：https://github.com/google/j2objc（40M左右）。 打开终端，去到j2objc目录下，执行make dist编译整个j2objc文件，完成后发现多了个名为dist的目录，里面装着就是j2objc的执行文件。（make dist过程较漫长，有半个钟头。编译完毕后目录容量去..."
 }
@@ -124,7 +124,17 @@ echo "'${DERIVED_FILES_DIR}'"
 参数具体请点：https://github.com/google/j2objc/wiki/j2objc</p>
 </div>
 <div class="paragraph">
-<p>所以上面的脚本你需要修改的地方：1. J2OBJC_HOME名字，2."${PROJECT_DIR}/java" java源码路径。</p>
+<p>所以上面的脚本你需要修改的地方：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>J2OBJC_HOME名字，</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>2."${PROJECT_DIR}/java" java源码路径，</p>
 </div>
 <div class="paragraph">
 <p>Output Files加入：,
