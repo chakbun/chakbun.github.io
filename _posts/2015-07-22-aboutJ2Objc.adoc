@@ -31,7 +31,11 @@ echo "'${DERIVED_FILES_DIR}'"
 编译格式：j2objc -d ${DERIVED_FILES_DIR} -sourcepath "${PROJECT_DIR}/java文件路径" --no-package-directories -use-arc -g ${INPUT_FILE_PATH};
 参数具体请点：https://github.com/google/j2objc/wiki/j2objc
 
-所以上面的脚本你需要修改的地方：1. J2OBJC_HOME名字，2."${PROJECT_DIR}/java" java源码路径。
+所以上面的脚本你需要修改的地方：
+
+1. J2OBJC_HOME名字，
+
+2."${PROJECT_DIR}/java" java源码路径，
 
 
 Output Files加入：,
