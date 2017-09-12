@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script type="text/javascript">
+    function msg() {
+        var textfield = document.getElementById("search_keyword");
+        var checkbox = document.getElementById("search_type");
+        var urlPrefix = "https://s.2.taobao.com/list/list.htm?";
+        if(checkbox.value == "商品") {
+            urlPrefix = urlPrefix + "q=" + textfield.value + "&search_type=item&_input_charset=utf8";
+        } else {
+            urlPrefix = urlPrefix + "usernick=" + textfield.value + "&_input_charset=utf8";
+        }
+        window.location.href=urlPrefix;
+    }
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search for XIAN YU</title>
+
+    <h2>闲鱼搜索</h2>
+
+    <form>
+        <input type="text" id="search_keyword" name="keyword"/>
+        <br><br>
+        <select id="search_type" name="type">
+            <option value="商品">商品</option>
+            <option value="卖家">卖家</option>
+        </select>
+        <br><br>
+        <input type="button" value="搜索" onclick="msg()" />
+    </form>
+
+</head>
+<body>
+
+</body>
+</html>
